@@ -100,8 +100,7 @@ drxstore/
 
 ## 📧 Contact
 **Developer:** Vineet  
-**Email:** psvineet@zohomail.in  
-
+**Email:** ci.vps@proton.me
 ---
 
 *DRXStore v2.0.0 — Built with ❤️ by Vineet*
