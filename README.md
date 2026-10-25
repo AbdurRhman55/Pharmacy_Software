@@ -1,5 +1,5 @@
 # DRXStore v2.0.0 — Complete Pharmacy Management System
-**Developed by Vineet | psvineet@zohomail.in**
+**Developed by Vineet | ci.vps@proton.me**
 
 ---
 
