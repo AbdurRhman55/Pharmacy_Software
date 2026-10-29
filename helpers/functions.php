@@ -220,7 +220,7 @@ code{background:#f1f3f6;padding:2px 6px;border-radius:4px;font-family:monospace}
 <div class="wrap">
   <div class="hdr"><h1>{$store}</h1><p>{$title}</p></div>
   <div class="body">{$body}</div>
-  <div class="footer">Developed with &#x1FAC0; by <strong>Vineet</strong> &nbsp;&bull;&nbsp; &copy; {$year} {$store}</div>
+  <div class="footer">Developed by <strong>Abd Ur Rahman</strong> &nbsp;&bull;&nbsp; &copy; {$year} {$store}</div>
 </div></body></html>
 HTML;
 }

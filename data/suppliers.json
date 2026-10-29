@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Getz Pharma Distribution",
+        "contact": "Kashif Raza",
+        "phone": "0300-1234567",
+        "email": "supplier@getzpharma.pk",
+        "address": "Plot 29-30, Korangi Industrial Area, Karachi",
+        "gst_no": "NTN-4589210-7",
+        "dl_no": "DL-KHI-8891",
+        "updated_at": null,
+        "created_at": "2026-10-29 09:30:45"
+    },
+    {
+        "id": 2,
+        "name": "GSK Healthcare Pakistan",
+        "contact": "Zahid Ali",
+        "phone": "0321-9876543",
+        "email": "zahid@gsk.pk",
+        "address": "35-KM Ferozepur Road, Lahore",
+        "gst_no": "NTN-9821034-1",
+        "dl_no": "DL-LHR-4412",
+        "updated_at": null,
+        "created_at": "2026-10-29 09:30:45"
+    }
+]

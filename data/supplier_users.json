@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "supplier_id": 1,
+        "name": "Kashif Raza",
+        "username": "supplier",
+        "email": "supplier@getzpharma.pk",
+        "phone": "0300-1234567",
+        "password": "$2y$10$8RAzVnbDHjw1.AteQwC9fuAJkVlVcmikyNPUILOvCalHJKAyD7zM2",
+        "active": 1,
+        "verified": 1,
+        "last_login": "2026-10-29 09:37:37",
+        "updated_at": null,
+        "created_at": "2026-10-29 09:30:45"
+    }
+]

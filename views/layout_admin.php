@@ -160,7 +160,7 @@ function adminHeader(string $title, string $activePage = ''): void {
     echo _navItem('logout','Sign Out','logout','');
     echo '</ul>';
 
-    echo '<div class="sb-foot">Developed with 🫀 by <strong>Vineet</strong></div>';
+    echo '<div class="sb-foot">Developed by <strong>Abd Ur Rahman</strong></div>';
     echo '</nav>' . "\n";
 
     // Main

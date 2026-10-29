@@ -88,7 +88,7 @@ $cfg = getSettings();
     <a href="index.php?p=cust_login" class="btn btn-ghost btn-sm">Patient Login</a>
   </div>
 
-  <div class="auth-footer">Developed with &#x1FAC0; by <strong>Vineet</strong></div>
+  <div class="auth-footer">Developed by <strong>Abd Ur Rahman</strong></div>
 </div>
 </div>
 <script src="<?php echo assetUrl('assets/js/app.js'); ?>"></script>

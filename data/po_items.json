@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "po_id": 1,
+        "medicine_id": 3,
+        "quantity": 30,
+        "price": "310.00",
+        "mrp": "380.00",
+        "received_qty": 0,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "po_id": 1,
+        "medicine_id": 6,
+        "quantity": 60,
+        "price": "95.00",
+        "mrp": "125.00",
+        "received_qty": 0,
+        "updated_at": null
+    }
+]

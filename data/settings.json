@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "store_name": "Al-Shifa Healthcare Pharmacy",
+        "store_address": "Shop # 12, Commercial Plaza, Main Blue Area, Islamabad",
+        "store_phone": "051-2894561 / 0300-5554321",
+        "store_email": "info@alshifapharmacy.pk",
+        "store_gst": "NTN-7392014-9",
+        "store_dl": "DRAP-ISB-2024-0089",
+        "currency": "Rs",
+        "low_qty": 10,
+        "expiry_days": 90,
+        "smtp_host": null,
+        "smtp_port": 587,
+        "smtp_user": null,
+        "smtp_pass": null,
+        "smtp_from": null,
+        "smtp_name": null,
+        "smtp_secure": "tls",
+        "setup_done": 1,
+        "storage": "json",
+        "updated_at": null,
+        "created_at": "2026-10-29 09:43:16"
+    }
+]
