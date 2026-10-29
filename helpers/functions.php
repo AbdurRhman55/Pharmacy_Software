@@ -8,31 +8,31 @@
 function e($v): string { return htmlspecialchars((string)($v ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }
 /**
  * Returns the currency HTML entity, robust against DB charset corruption.
- * Maps stored value → safe HTML entity. Handles: &#8377; INR ₹ ? ??? etc.
+ * Maps stored value → safe HTML entity. Handles: Rs PKR $ ₹ ? ??? etc.
  */
 function currencySymbol(): string {
     static $sym = null;
     if ($sym !== null) return $sym;
     $cfg = getSettings();
-    $raw = $cfg['currency'] ?? '&#8377;';
+    $raw = $cfg['currency'] ?? 'Rs';
     // Known safe HTML entities stored directly
-    $knownEntities = ['&#8377;','$','&euro;','&pound;','&#165;','&#8364;'];
+    $knownEntities = ['Rs','Rs.','PKR','&#8377;','$','&euro;','&pound;','&#165;','&#8364;'];
     if (in_array($raw, $knownEntities, true)) { $sym = $raw; return $sym; }
     // Safe ASCII codes (new system)
-    $codeMap = ['INR'=>'&#8377;','USD'=>'$','EUR'=>'&euro;','GBP'=>'&pound;','JPY'=>'&#165;'];
+    $codeMap = ['PKR'=>'Rs','INR'=>'&#8377;','USD'=>'$','EUR'=>'&euro;','GBP'=>'&pound;','JPY'=>'&#165;'];
     if (isset($codeMap[$raw])) { $sym = $codeMap[$raw]; return $sym; }
     // Detect raw UTF-8 rupee character ₹ (U+20B9) and common variants
-    if ($raw === "â¹" || $raw === '₹') { $sym = '&#8377;'; return $sym; }
+    if ($raw === "â¹" || $raw === '₹') { $sym = 'Rs'; return $sym; }
     if ($raw === '€') { $sym = '&euro;'; return $sym; }
     if ($raw === '£') { $sym = '&pound;'; return $sym; }
     // Anything that looks corrupted (contains '?', is empty, too long, non-ASCII junk)
     if ($raw === '' || $raw === '?' || $raw === '??' || $raw === '???' || strpos($raw,'?') !== false) {
-        // Auto-repair: write &#8377; back to DB so future loads work
+        // Auto-repair: write Rs back to DB so future loads work
         global $db;
         if ($db) {
-            try { $db->update('settings', fn($x) => true, ['currency' => '&#8377;']); } catch(Exception $e) {}
+            try { $db->update('settings', fn($x) => true, ['currency' => 'Rs']); } catch(Exception $e) {}
         }
-        $sym = '&#8377;';
+        $sym = 'Rs';
         return $sym;
     }
     // Fallback: return as-is if it looks like a short safe string
@@ -230,7 +230,7 @@ function mailWrap(string $title, string $body): string { return mailTemplate($ti
 
 /* ── Base URL (auto-detected, works from root or subdirectory) ── */
 
-/* ── Amount in Words (INR) ── */
+/* ── Amount in Words (PKR) ── */
 function amountInWords(float $amount): string {
     $ones = ['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine',
              'Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen',

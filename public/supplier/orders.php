@@ -260,14 +260,14 @@ document.querySelectorAll('.row-price-input').forEach(function(inp) {
         var qty = parseFloat(this.dataset.qty) || 0;
         var price = parseFloat(this.value) || 0;
         var rowCell = this.closest('tr').querySelector('.row-total-cell');
-        if (rowCell) rowCell.textContent = '\u20b9' + (qty * price).toFixed(2);
+        if (rowCell) rowCell.textContent = 'Rs ' + (qty * price).toFixed(2);
         // Recalc grand total
         var tot = 0;
         document.querySelectorAll('.row-price-input').forEach(function(r) {
             tot += (parseFloat(r.dataset.qty)||0) * (parseFloat(r.value)||0);
         });
         var el = document.getElementById('liveTot');
-        if (el) el.textContent = '\u20b9' + tot.toFixed(2);
+        if (el) el.textContent = 'Rs ' + tot.toFixed(2);
     });
 });
 </script>

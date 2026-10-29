@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         $n=post('store_name'); $e=post('store_email');
         if (!$n) $errors[]='Store name required.';
         if (!filter_var($e,FILTER_VALIDATE_EMAIL)) $errors[]='Valid email required.';
-        if (empty($errors)) { $_SESSION['setup']=array_merge($_SESSION['setup']??[],['store_name'=>$n,'store_email'=>$e,'store_addr'=>post('store_address'),'store_phone'=>post('store_phone'),'store_gst'=>post('store_gst'),'store_dl'=>post('store_dl'),'currency'=>(in_array(post('currency'),['&#8377;','$','&euro;','&pound;'],true)?post('currency'):'&#8377;')]); $step=2; }
+        if (empty($errors)) { $_SESSION['setup']=array_merge($_SESSION['setup']??[],['store_name'=>$n,'store_email'=>$e,'store_addr'=>post('store_address'),'store_phone'=>post('store_phone'),'store_gst'=>post('store_gst'),'store_dl'=>post('store_dl'),'currency'=>(in_array(post('currency'),['Rs','&#8377;','$','&euro;','&pound;'],true)?post('currency'):'Rs')]); $step=2; }
     } elseif ($step===2) {
         $fn=post('full_name'); $un=post('username'); $em=post('email'); $pw=post('password'); $cn=post('confirm');
         if (!$fn) $errors[]='Full name required.';
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
 render:
 $s=$_SESSION['setup']??[];
 $stepTitles=['Store Details','Admin Account','Data Storage','Confirm'];
-$currency_sym = $s['currency'] ?? '&#8377;';
+$currency_sym = $s['currency'] ?? 'Rs';
 ?>
 <!DOCTYPE html><html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -106,14 +106,14 @@ $currency_sym = $s['currency'] ?? '&#8377;';
       <div class="form-group"><label class="form-label">Address</label><textarea class="form-control" name="store_address" rows="2"><?=e($s['store_addr']??'')?></textarea></div>
       <div class="form-row-2">
         <div class="form-group"><label class="form-label">Phone</label><input class="form-control" type="text" name="store_phone" value="<?=e($s['store_phone']??'')?>"></div>
-        <div class="form-group"><label class="form-label">GST Number (GSTIN)</label><input class="form-control" type="text" name="store_gst" value="<?=e($s['store_gst']??'')?>" placeholder="15-digit GSTIN"></div>
+        <div class="form-group"><label class="form-label">NTN / STRN Number</label><input class="form-control" type="text" name="store_gst" value="<?=e($s['store_gst']??'')?>" placeholder="NTN or Sales Tax Registration Number"></div>
       </div>
       <div class="form-row-2">
         <div class="form-group"><label class="form-label">Drug Licence (DL) Number</label><input class="form-control" type="text" name="store_dl" value="<?=e($s['store_dl']??'')?>" placeholder="e.g. MH-XX-12345"><div class="form-hint">Optional — will appear on all invoices.</div></div>
       </div>
       <div class="form-group"><label class="form-label">Currency</label>
         <select class="form-control" name="currency">
-          <?php foreach(['&#8377;'=>'&#8377; INR &mdash; Indian Rupee','$'=>'$ USD &mdash; US Dollar','&euro;'=>'&euro; EUR &mdash; Euro','&pound;'=>'&pound; GBP &mdash; British Pound'] as $cs=>$cl):?>
+          <?php foreach(['Rs'=>'Rs PKR &mdash; Pakistani Rupee','&#8377;'=>'&#8377; INR &mdash; Indian Rupee','$'=>'$ USD &mdash; US Dollar','&euro;'=>'&euro; EUR &mdash; Euro','&pound;'=>'&pound; GBP &mdash; British Pound'] as $cs=>$cl):?>
           <option value="<?=htmlspecialchars($cs,ENT_QUOTES)?>" <?=$currency_sym===$cs?'selected':''?>><?=$cl?></option>
           <?php endforeach;?>
         </select>

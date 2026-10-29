@@ -1,0 +1,15 @@
+# Runtime generated data & markers
+data/.alert_sent_*
+data/.attr_marker
+data/uploads/*
+!data/uploads/.gitkeep
+data/db_config.json
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & temp files
+*.log
+*.tmp

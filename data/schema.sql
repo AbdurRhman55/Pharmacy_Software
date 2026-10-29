@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `store_email` VARCHAR(255),
   `store_gst` VARCHAR(50),
   `store_dl` VARCHAR(50),
-  `currency` VARCHAR(20) DEFAULT '&#8377;',
+  `currency` VARCHAR(20) DEFAULT 'Rs',
   `low_qty` INT DEFAULT 10,
   `expiry_days` INT DEFAULT 90,
   `smtp_host` VARCHAR(255),

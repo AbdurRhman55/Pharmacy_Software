@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     verifyCsrf(); $act=post('action');
 
     if($act==='general'){
-        $data=['store_name'=>post('store_name'),'store_address'=>post('store_address'),'store_phone'=>post('store_phone'),'store_email'=>post('store_email'),'store_gst'=>post('store_gst'),'store_dl'=>post('store_dl'),'currency'=>(function(){ $c=post('currency','&#8377;'); $safe=['&#8377;','$','&euro;','&pound;','&#165;']; return in_array($c,$safe,true)?$c:'&#8377;'; })(),'low_qty'=>max(1,postInt('low_qty',10)),'expiry_days'=>max(1,postInt('expiry_days',90)),'updated_at'=>date('Y-m-d H:i:s')];
+        $data=['store_name'=>post('store_name'),'store_address'=>post('store_address'),'store_phone'=>post('store_phone'),'store_email'=>post('store_email'),'store_gst'=>post('store_gst'),'store_dl'=>post('store_dl'),'currency'=>(function(){ $c=post('currency','Rs'); $safe=['Rs','PKR','&#8377;','$','&euro;','&pound;','&#165;']; return in_array($c,$safe,true)?$c:'&#8377;'; })(),'low_qty'=>max(1,postInt('low_qty',10)),'expiry_days'=>max(1,postInt('expiry_days',90)),'updated_at'=>date('Y-m-d H:i:s')];
         // Preserve SMTP fields
         // Preserve all general fields (SMTP only updates SMTP)
         foreach(['smtp_host','smtp_port','smtp_user','smtp_pass','smtp_from','smtp_name','smtp_secure'] as $f) {
@@ -147,10 +147,10 @@ $cfg=$db->findOne('settings',fn($x)=>true)??[];
 // Auto-repair corrupted currency (e.g. after bad charset restore)
 if(isset($cfg['currency'])){
     $rawCur=$cfg['currency'];
-    $knownSafe=['&#8377;','$','&euro;','&pound;','&#165;'];
+    $knownSafe=['Rs','PKR','&#8377;','$','&euro;','&pound;','&#165;'];
     if(!in_array($rawCur,$knownSafe,true)&&$rawCur!==''){
-        $db->update('settings',fn($x)=>true,['currency'=>'&#8377;']);
-        $cfg['currency']='&#8377;';
+        $db->update('settings',fn($x)=>true,['currency'=>'Rs']);
+        $cfg['currency']='Rs';
         $GLOBALS['_settings_cache']=null;
     }
 }
@@ -460,9 +460,9 @@ if($_SERVER['REQUEST_METHOD']==='POST' && post('action')==='restore_mysql'){
         try {
             $cfgAfter = $pdo->query("SELECT currency FROM settings LIMIT 1")->fetch(PDO::FETCH_ASSOC);
             $rawCur = $cfgAfter['currency'] ?? '';
-            $safeCurs = ['&#8377;','$','&euro;','&pound;','&#165;'];
+            $safeCurs = ['Rs','PKR','&#8377;','$','&euro;','&pound;','&#165;'];
             if (!in_array($rawCur, $safeCurs, true)) {
-                $pdo->exec("UPDATE settings SET currency='&#8377;' LIMIT 1");
+                $pdo->exec("UPDATE settings SET currency='Rs' LIMIT 1");
             }
         } catch(Exception $e) { /* non-fatal */ }
 
@@ -514,13 +514,13 @@ adminHeader('Settings','settings');
           <div class="form-group"><label class="form-label">Email</label><input class="form-control" type="email" name="store_email" value="<?=e($cfg['store_email']??'')?>"><div class="form-hint">Used for store contact &amp; notifications.</div></div>
         </div>
         <div class="form-row-2">
-          <div class="form-group"><label class="form-label">GST Number (GSTIN)</label><input class="form-control" type="text" name="store_gst" value="<?=e($cfg['store_gst']??'')?>" placeholder="15-digit GSTIN"></div>
+          <div class="form-group"><label class="form-label">NTN / STRN Number</label><input class="form-control" type="text" name="store_gst" value="<?=e($cfg['store_gst']??'')?>" placeholder="NTN or Sales Tax Reg No"></div>
         </div>
         <div class="form-row-2">
           <div class="form-group"><label class="form-label">Drug Licence (DL) Number</label><input class="form-control" type="text" name="store_dl" value="<?=e($cfg['store_dl']??'')?>" placeholder="DL No. e.g. MH-XX-12345"><div class="form-hint">Used on all invoices and purchase orders.</div></div>
           <div class="form-group"><label class="form-label">Currency</label>
             <select class="form-control" name="currency">
-              <?php $currOpts=['&#8377;'=>'&#8377; INR — Rupee','$'=>'$ USD — Dollar','&euro;'=>'&euro; EUR — Euro','&pound;'=>'&pound; GBP — Pound']; $curSym=currencySymbol();
+              <?php $currOpts=['Rs'=>'Rs PKR — Pakistani Rupee','&#8377;'=>'&#8377; INR — Indian Rupee','$'=>'$ USD — Dollar','&euro;'=>'&euro; EUR — Euro','&pound;'=>'&pound; GBP — Pound']; $curSym=currencySymbol();
               foreach($currOpts as $sym=>$lbl):?>
               <option value="<?=e($sym)?>" <?=$curSym===$sym?'selected':''?>><?=$lbl?></option>
               <?php endforeach;?>

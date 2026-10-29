@@ -10,7 +10,7 @@ $viewItems=$viewSale?$db->find('sales_items',fn($si)=>($si['sale_id']??0)===$vie
 $medMap=[]; foreach($db->table('medicines') as $m) $medMap[$m['id']]=$m;
 $batMap=[]; foreach($db->table('batches')   as $b) $batMap[$b['id']]=$b;
 $cfg=getSettings();
-$currency=$cfg['currency']??'&#8377;';
+$currency=$cfg['currency']??'Rs';
 $storeEmail=storeEmail();
 $navItems=['cust_dash'=>['icon'=>'grid','label'=>'My Dashboard'],'cust_orders'=>['icon'=>'orders','label'=>'My Orders'],'cust_messages'=>['icon'=>'mail','label'=>'Messages'],'cust_return'=>['icon'=>'return','label'=>'Return Request'],'cust_profile'=>['icon'=>'user','label'=>'My Profile']];
 portalHeader('My Orders','customer','cust_orders',$navItems,['name'=>'customer_name']);
@@ -51,7 +51,7 @@ portalHeader('My Orders','customer','cust_orders',$navItems,['name'=>'customer_n
         <?php if(!empty($cfg['store_address'])): ?><div style="font-size:.75rem;opacity:.85"><?=e($cfg['store_address'])?></div><?php endif; ?>
         <?php if(!empty($cfg['store_phone'])): ?><div style="font-size:.75rem;opacity:.85">Tel: <?=e($cfg['store_phone'])?></div><?php endif; ?>
         <?php if(!empty($storeEmail)): ?><div style="font-size:.75rem;opacity:.85">Email: <?=e($storeEmail)?></div><?php endif; ?>
-        <?php if(!empty($cfg['store_gst'])): ?><div style="font-size:.78rem;font-weight:700;margin-top:4px">GSTIN: <?=e($cfg['store_gst'])?></div><?php endif; ?>
+        <?php if(!empty($cfg['store_gst'])): ?><div style="font-size:.78rem;font-weight:700;margin-top:4px">NTN/STRN: <?=e($cfg['store_gst'])?></div><?php endif; ?>
         <?php if(!empty($cfg['store_dl'])): ?><div style="font-size:.78rem;font-weight:700;margin-top:2px">DL No: <?=e($cfg['store_dl'])?></div><?php endif; ?>
       </div>
       <div style="text-align:right">
@@ -134,7 +134,7 @@ portalHeader('My Orders','customer','cust_orders',$navItems,['name'=>'customer_n
       2. Please check the expiry date and batch number before purchase.<br>
       3. This is a computer-generated invoice and does not require a physical signature.<br>
       <?php if(!empty($storeEmail)): ?>4. For queries contact us at <?=e($storeEmail)?><?php if(!empty($cfg['store_phone'])): ?> or <?=e($cfg['store_phone'])?><?php endif; ?><br><?php endif; ?>
-      5. Subject to GST regulations and local jurisdiction.
+      5. Subject to FBR/Sales Tax regulations and local jurisdiction.
     </div>
     <div style="text-align:center;margin-top:10px;font-size:.72rem;color:var(--g5)">Thank you for your purchase! We wish you good health.</div>
   </div>

@@ -127,7 +127,7 @@ adminHeader('Suppliers','suppliers');
 <div class="card"><div class="card-body p0">
   <?php if(empty($sups)):?><div class="empty-state"><p>No suppliers.</p></div><?php else:?>
   <div class="table-wrap"><table class="tbl">
-    <thead><tr><th>#</th><th>Company</th><th>Contact</th><th>Phone</th><th>Email</th><th>GST</th><th>DL No.</th><th>Portal</th><th>Batches</th><th></th></tr></thead>
+    <thead><tr><th>#</th><th>Company</th><th>Contact</th><th>Phone</th><th>Email</th><th>NTN/STRN</th><th>DL No.</th><th>Portal</th><th>Batches</th><th></th></tr></thead>
     <tbody>
     <?php foreach($sups as $s):
       $bc=$db->count('batches',fn($b)=>($b['supplier_id']??null)==$s['id']);
@@ -173,7 +173,7 @@ adminHeader('Suppliers','suppliers');
         <div class="form-group"><label class="form-label">Email</label><input class="form-control" type="email" name="email" value="<?=e($edit['email']??post('email'))?>"></div>
       </div>
       <div class="form-row-2">
-        <div class="form-group"><label class="form-label">GST Number</label><input class="form-control" type="text" name="gst_no" value="<?=e($edit['gst_no']??post('gst_no'))?>" placeholder="15-digit GSTIN"></div>
+        <div class="form-group"><label class="form-label">NTN / STRN Number</label><input class="form-control" type="text" name="gst_no" value="<?=e($edit['gst_no']??post('gst_no'))?>" placeholder="NTN or STRN"></div>
         <div class="form-group"><label class="form-label">Drug Licence (DL) Number</label><input class="form-control" type="text" name="dl_no" value="<?=e($edit['dl_no']??post('dl_no'))?>" placeholder="e.g. MH-XX-12345"><div class="form-hint">Not required but recommended for invoices.</div></div>
       </div>
       <div class="form-group"><label class="form-label">Address</label><textarea class="form-control" name="address" rows="2"><?=e($edit['address']??post('address'))?></textarea></div>

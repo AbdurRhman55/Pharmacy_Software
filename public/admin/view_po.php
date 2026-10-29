@@ -87,7 +87,7 @@ adminHeader(poNo($id),'purchase');
       <?php if(!empty($cfg['store_address'])):?><div style="font-size:.78rem;color:var(--g6)"><?=e($cfg['store_address'])?></div><?php endif;?>
       <?php if(!empty($cfg['store_phone'])):?><div style="font-size:.78rem;color:var(--g6)">Tel: <?=e($cfg['store_phone'])?></div><?php endif;?>
       <?php if(!empty($cfg['store_email'])):?><div style="font-size:.78rem;color:var(--g6)">Email: <?=e($cfg['store_email'])?></div><?php endif;?>
-      <?php if(!empty($cfg['store_gst'])):?><div style="font-size:.8rem;font-weight:700;color:var(--navy);margin-top:4px">GSTIN: <?=e($cfg['store_gst'])?></div><?php endif;?>
+      <?php if(!empty($cfg['store_gst'])):?><div style="font-size:.8rem;font-weight:700;color:var(--navy);margin-top:4px">NTN/STRN: <?=e($cfg['store_gst'])?></div><?php endif;?>
     </div>
     <div style="text-align:right">
       <div style="font-size:1.1rem;font-weight:800;color:var(--navy);border:2px solid var(--navy);padding:4px 14px;border-radius:6px">PURCHASE ORDER</div>
@@ -121,7 +121,7 @@ adminHeader(poNo($id),'purchase');
       <?php if(!empty($sup['phone'])):?><p class="text-muted">Tel: <?=e($sup['phone'])?></p><?php endif;?>
       <?php if(!empty($sup['email'])):?><p class="text-muted">Email: <?=e($sup['email'])?></p><?php endif;?>
       <?php if(!empty($sup['address'])):?><p class="text-muted"><?=e($sup['address'])?></p><?php endif;?>
-      <?php if(!empty($sup['gst_no'])):?><p style="font-weight:700;color:var(--navy)">GSTIN: <?=e($sup['gst_no'])?></p><?php endif;?>
+      <?php if(!empty($sup['gst_no'])):?><p style="font-weight:700;color:var(--navy)">NTN/STRN: <?=e($sup['gst_no'])?></p><?php endif;?>
       <?php if(!empty($sup['dl_no'])):?><p style="font-weight:700;color:var(--navy)">DL No: <?=e($sup['dl_no'])?></p><?php endif;?>
     </div>
     <div>
@@ -129,7 +129,7 @@ adminHeader(poNo($id),'purchase');
       <p class="fw-600"><?=e($cfg['store_name']??APP_NAME)?></p>
       <?php if(!empty($cfg['store_address'])):?><p class="text-muted"><?=e($cfg['store_address'])?></p><?php endif;?>
       <?php if(!empty($cfg['store_phone'])):?><p class="text-muted">Tel: <?=e($cfg['store_phone'])?></p><?php endif;?>
-      <?php if(!empty($cfg['store_gst'])):?><p style="font-weight:700;color:var(--navy)">GSTIN: <?=e($cfg['store_gst'])?></p><?php endif;?>
+      <?php if(!empty($cfg['store_gst'])):?><p style="font-weight:700;color:var(--navy)">NTN/STRN: <?=e($cfg['store_gst'])?></p><?php endif;?>
       <?php if(!empty($cfg['store_dl'])):?><p style="font-weight:700;color:var(--navy)">DL No: <?=e($cfg['store_dl'])?></p><?php endif;?>
     </div>
   </div>
@@ -162,7 +162,7 @@ adminHeader(poNo($id),'purchase');
       $qty=(int)($it['quantity']??0);
       $unitPrice=(float)($it['price']??0);
       $gstPctPO=(float)($med['gst_percent']??12);
-      // Purchase price is GST-INCLUSIVE (as per Indian pharmacy practice)
+      // Purchase price is GST-INCLUSIVE (as per Pakistan pharmacy practice)
       // Back-calculate: taxable = (qty × price) / (1 + gst/100)
       $lineInclGST = round($qty * $unitPrice, 2);
       $taxablePO   = round($lineInclGST / (1 + $gstPctPO / 100), 2);
@@ -214,7 +214,7 @@ adminHeader(poNo($id),'purchase');
     5. Payment will be made as per agreed terms upon receipt and verification of goods.<br>
     6. This is a computer-generated purchase order and is valid without physical signature.<br>
     <?php if(!empty($cfg['store_email'])):?>7. For queries: <?=e($cfg['store_email'])?><?php if(!empty($cfg['store_phone'])):?> | <?=e($cfg['store_phone'])?><?php endif;?><br><?php endif;?>
-    8. Subject to GST regulations and local jurisdiction.
+    8. Subject to FBR/Sales Tax regulations and local jurisdiction.
   </div>
 
   <!-- Signature -->

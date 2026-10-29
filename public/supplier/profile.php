@@ -20,7 +20,7 @@ portalHeader('My Profile','supplier','sup_profile',$navItems,['name'=>'supplier_
 <?php foreach($errors as $er):?><div class="alert alert-danger"><span class="alert-body"><?=e($er)?></span></div><?php endforeach;?>
 <div class="dash-grid">
   <div class="card"><div class="card-hdr"><div class="card-title">Company Details</div></div><div class="card-body">
-    <?php if($sup): $items=['Company'=>$sup['name']??'','Contact'=>$sup['contact']??'','Phone'=>$sup['phone']??'','Email'=>$sup['email']??'','Address'=>$sup['address']??'','GST No'=>$sup['gst_no']??'','DL Number'=>$sup['dl_no']??''];
+    <?php if($sup): $items=['Company'=>$sup['name']??'','Contact'=>$sup['contact']??'','Phone'=>$sup['phone']??'','Email'=>$sup['email']??'','Address'=>$sup['address']??'','NTN/STRN'=>$sup['gst_no']??'','DL Number'=>$sup['dl_no']??''];
     foreach($items as $k=>$v):?><div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--g3);font-size:.83rem"><span style="width:90px;color:var(--g5);font-weight:600;flex-shrink:0"><?=e($k)?></span><span class="fw-600"><?=e($v)?:'—'?></span></div><?php endforeach;
     else:?><p class="text-muted">No company info found.</p><?php endif;?>
   </div></div>

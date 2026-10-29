@@ -25,7 +25,7 @@ foreach ($cart as $item) {
     if (($b['quantity'] ?? 0) < $item['qty']) { setFlash('danger', 'Insufficient stock for ' . $item['name']); header('Location: index.php?p=sales'); exit; }
 }
 
-// Calculate totals — MRP and price are GST-INCLUSIVE (as per Indian law)
+// Calculate totals — MRP and price are GST-INCLUSIVE (as per Pakistan tax law)
 // Back-calculate: base = price_incl / (1 + gst_rate)  |  gst = price_incl - base
 $sub    = 0;
 $gstAmt = 0;

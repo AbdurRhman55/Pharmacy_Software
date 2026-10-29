@@ -12,7 +12,7 @@ if (!defined('ADMIN_EMAIL')) define('ADMIN_EMAIL', 'psvineet@zohomail.in');
 if (!defined('ROOT'))     define('ROOT',     dirname(__DIR__));
 if (!defined('DATA_DIR')) define('DATA_DIR', ROOT . '/data');
 
-if (!defined('GST_RATE'))      define('GST_RATE',      0.18);
+if (!defined('GST_RATE'))      define('GST_RATE',      0.17);
 if (!defined('LOW_QTY'))       define('LOW_QTY',       10);
 if (!defined('EXPIRY_DAYS'))   define('EXPIRY_DAYS',   90);
 if (!defined('PER_PAGE'))      define('PER_PAGE',      25);
@@ -36,7 +36,7 @@ if (!defined('STAFF_ALLOWED_PAGES')) define('STAFF_ALLOWED_PAGES', [
 
 ini_set('display_errors', 0);   // Never expose raw errors to browser
 error_reporting(E_ALL);
-date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set('Asia/Karachi');
 
 require_once ROOT . '/helpers/JsonDB.php';
 require_once ROOT . '/helpers/MySQLDB.php';

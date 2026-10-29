@@ -43,7 +43,7 @@ class MySQLDB {
                 'store_email'  => 'VARCHAR(255)',
                 'store_gst'    => 'VARCHAR(50)',
                 'store_dl'     => 'VARCHAR(50)',
-                'currency'     => 'VARCHAR(20) DEFAULT "&#8377;"',
+                'currency'     => 'VARCHAR(20) DEFAULT "Rs"',
                 'low_qty'      => 'INT DEFAULT 10',
                 'expiry_days'  => 'INT DEFAULT 90',
                 'smtp_host'    => 'VARCHAR(255)',
@@ -349,7 +349,7 @@ class MySQLDB {
                 $needsFix = ($cur === '' || $cur === '?' || $cur === '??' || $cur === '???'
                           || (strpos($cur, '?') !== false && strpos($cur, '&#') === false));
                 if ($needsFix) {
-                    $this->pdo->exec("UPDATE `settings` SET `currency` = '&#8377;' WHERE `currency` NOT LIKE '%&%'");
+                    $this->pdo->exec("UPDATE `settings` SET `currency` = 'Rs' WHERE `currency` NOT LIKE '%&%'");
                 }
             }
         } catch (Exception $e) {}

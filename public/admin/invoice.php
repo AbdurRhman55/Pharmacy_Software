@@ -55,7 +55,7 @@ adminHeader('Invoice ' . invNo($inv['sale_id']), 'sales');
       <?php if(!empty($cfg['store_address'])):?><p style="font-size:.78rem;opacity:.82;margin-bottom:2px"><?=e($cfg['store_address'])?></p><?php endif;?>
       <?php if(!empty($cfg['store_phone'])):?><p style="font-size:.78rem;opacity:.82;margin-bottom:2px">Tel: <?=e($cfg['store_phone'])?></p><?php endif;?>
       <?php if(!empty($cfg['store_email'])):?><p style="font-size:.78rem;opacity:.82;margin-bottom:2px">Email: <?=e($cfg['store_email'])?></p><?php endif;?>
-      <?php if(!empty($cfg['store_gst'])):?><p style="font-size:.82rem;font-weight:700;margin-top:6px">GSTIN: <?=e($cfg['store_gst'])?></p><?php endif;?>
+      <?php if(!empty($cfg['store_gst'])):?><p style="font-size:.82rem;font-weight:700;margin-top:6px">NTN/STRN: <?=e($cfg['store_gst'])?></p><?php endif;?>
       <?php if(!empty($cfg['store_dl'])):?><p style="font-size:.82rem;font-weight:700;margin-top:2px">DL No: <?=e($cfg['store_dl'])?></p><?php endif;?>
     </div>
     <div style="text-align:right">
@@ -116,7 +116,7 @@ adminHeader('Invoice ' . invNo($inv['sale_id']), 'sales');
       $totalTaxable = 0; $totalGstAmt = 0;
       foreach($inv['cart'] as $i => $item):
           $med     = $medMapI[$item['medicine_id']??0] ?? null;
-          $gstPct  = (float)($item['gst_pct'] ?? $med['gst_percent'] ?? 18);
+          $gstPct  = (float)($item['gst_pct'] ?? $med['gst_percent'] ?? 17);
           $baseAmt = round($item['price'] / (1 + $gstPct/100), 2);
           $gstAmt  = round($item['price'] - $baseAmt, 2);
           $totalTaxable += $baseAmt;
@@ -161,7 +161,7 @@ adminHeader('Invoice ' . invNo($inv['sale_id']), 'sales');
       2. Please check the expiry date and batch number before purchase.<br>
       3. This is a computer-generated invoice and does not require a physical signature.<br>
       4. For any queries, contact us at <?=e(storeEmail())?> or <?=e($cfg['store_phone']??'')?><br>
-      5. Subject to <?=e($cfg['store_gst']?'GST regulations and ':'')?> local jurisdiction.
+      5. Subject to <?=e($cfg['store_gst']?'Sales Tax regulations and ':'')?> local jurisdiction.
     </div>
 
     <div class="inv-foot">
